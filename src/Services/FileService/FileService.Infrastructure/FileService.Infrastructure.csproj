@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Base\Base.Infrastructure\Base.Infrastructure.csproj" />
+    <ProjectReference Include="..\FileService.Application\FileService.Application.csproj" />
+  </ItemGroup>
+
+</Project>

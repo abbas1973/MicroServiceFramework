@@ -1,0 +1,107 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "FileService.Grpc.Protos";
+
+
+service MediaFilesProto{
+	//ایجاد فایل آپلود شده در دیتابیس
+	rpc Create(MediaFileProtoCreateRequest) returns (MediaFileProtoCreateResponse);
+
+	//ویرایش عناوین مدیا فایل
+	rpc Update(MediaFileProtoUpdateRequest) returns (MediaFileProtoBaseResponse);
+	
+	// حذف مدیا فایل
+	rpc Delete(MediaFileProtoRequestById) returns (MediaFileProtoBaseResponse);
+		
+	// گرفتن اطلاعات فایل با آیدی
+	rpc GetById(MediaFileProtoRequestById) returns (MediaFileProtoGetByIdResponse);
+	
+	// گرفتن اطلاعات فایل ها با آیدی ها
+	rpc GetByIds(MediaFileProtoGetByIdsRequest) returns (MediaFileProtoGetByIdsResponse);
+}
+
+
+
+
+// ارسال درخواست با آیدی
+message MediaFileProtoRequestById{
+	int64 Id = 1;
+}
+
+
+// مدل خروجی پایه
+message MediaFileProtoBaseResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+}
+
+
+
+
+// مدل اطلاعات فایل
+message MediaFileProtoModel{
+	int64 Id = 1;
+	string TitleFa = 2;
+	string TitleEn = 3;
+	string FileName = 4;
+	int64 Size = 5;
+	bool IsPic = 6;
+	int32 Format = 7;
+	int32 Group = 8;
+	string DownloadPath = 9;
+	string StreamPath = 10;
+	string ThumbStreamPath = 11;
+}
+
+
+
+
+// مدل ورودی برای ایجاد
+message MediaFileProtoCreateRequest{
+	string TitleFa = 1;
+	string TitleEn = 2;
+	string FileName = 3;
+	int64 Size = 4;
+	bool IsPic = 5;
+	int32 Format = 6;
+	int32 Group = 7;
+}
+
+// مدل خروجی برای ایجاد
+message MediaFileProtoCreateResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+	optional int64 Value = 3;
+}
+
+
+
+// مدل درخواست ویرایش مدیا فایل
+message MediaFileProtoUpdateRequest{
+	int64 Id = 1;
+	string TitleFa = 2;
+	string TitleEn = 3;
+}
+
+
+// مدل خروجی برای GetById
+message MediaFileProtoGetByIdResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+	optional MediaFileProtoModel Value = 3;
+}
+
+
+
+
+// گرفتن اطلاعات لیستی از فایل ها با آیدی آنها
+message MediaFileProtoGetByIdsRequest{
+	repeated int64 Ids = 1;
+}
+
+// مدل خروجی اطلاعات لیستی از فایل ها
+message MediaFileProtoGetByIdsResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+	repeated MediaFileProtoModel Value = 3;
+}

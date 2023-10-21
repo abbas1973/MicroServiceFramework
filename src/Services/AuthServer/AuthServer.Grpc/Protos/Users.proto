@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "AuthServer.Grpc.Protos";
+
+service UsersProto{
+	// گرفتن نام کاربر
+	rpc GetName(UserProtoRequestById) returns (UserProtoBaseResponse);
+
+	// گرفتن نام کاربری کاربر
+	rpc GetUsername(UserProtoRequestById) returns (UserProtoBaseResponse);
+
+	// گرفتن موبایل کاربر
+	rpc GetMobile(UserProtoRequestById) returns (UserProtoBaseResponse);
+
+	// گرفتن اطلاعات پایه کاربر شامل آیدی، نام، نام کاربری
+	rpc GetInfo(UserProtoRequestById) returns (UserProtoGetInfoResponse);
+}
+
+
+// درخواست با آیدی
+message UserProtoRequestById{
+	int64 Id = 1;
+}
+
+// خروجی زمانی که یک رشته مد نظر است
+message UserProtoBaseResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+	optional string Value = 3;
+}
+
+
+
+
+// گرفتن اطلاعات پایه کاربر شامل آیدی، نام، نام کاربری
+message UserProtoGetInfoResponse{
+	bool IsSuccess = 1;
+	repeated string Errors = 2;
+	optional UserProtoInfoModel Value = 3;
+}
+
+message UserProtoInfoModel{
+	int64 Id = 1;
+	string Username = 2;
+	string Name = 3;
+	string Mobile = 4;
+}
+

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--<ImplicitUsings>enable</ImplicitUsings>-->
+    <!--<Nullable>enable</Nullable>-->
+	  <Copyright>(C) 2023, abbas.mn1973@gmail.com</Copyright>
+	  <Authors>abbas.mn1973@gmail.com</Authors>
+	  <Authors>abbas1973@github.com</Authors>
+  </PropertyGroup>
+
+</Project>
